@@ -1,25 +1,24 @@
 {% load static %}
-<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Delex</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#twitter_tweet">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
+<nav class="navbar navbar-expand-lg bg-light">
+    <a class="navbar-brand mr-4" href="#">Mi estacionamiento</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/estacionamiento-privado">Estacionamiento Privados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/estacionamiento-particular">Estacionamiento Particular</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/login">Login</a>
+          </li>
         </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container -->
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 buscador-principal" type="text" placeholder="Buscar por comuna" aria-label="Buscar">
+          <button class="btn btn-outline-success my-2 my-sm-0 buscador-principal" type="submit">Buscar</button>
+        </form>
+      </div>
 </nav>
