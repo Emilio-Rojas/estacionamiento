@@ -4,11 +4,26 @@ from usuarios.models import User
 class TipoEstacionamiento(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.descripcion
+
 class ComunaEstacionamiento(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.descripcion
+
 class CategoriaEstacionamiento(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.descripcion
+
+class EstadoEstacionamiento(models.Model):
+    descripcion = models.CharField(max_length=100, null=True, blank=True)
+    
+    def __str__(self):
+        return self.descripcion
 
 class Estacionamiento(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_estacionamiento")
@@ -16,14 +31,37 @@ class Estacionamiento(models.Model):
     tipo_estacionamiento = models.ForeignKey(TipoEstacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     comuna_estacionamiento = models.ForeignKey(ComunaEstacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     categoria_estacionamiento = models.ForeignKey(CategoriaEstacionamiento, on_delete=models.CASCADE, null=True, blank=True)
+    estado_estacionamiento = models.ForeignKey(EstadoEstacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     calle = models.CharField(max_length=100, null=False, blank=False)
     numeracion = models.CharField(max_length=100, null=False, blank=False)
+
+class ImagenesEstacionamiento(models.Model):
+    estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+class Disponibilidad(models.Model):
+    estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
+    fecha_disponibilidad = models.DateField(blank=False, null=True)
+
+class BloqueDisponibilidad(models.Model):
+    disponibilidad = models.ForeignKey(Disponibilidad, on_delete=models.CASCADE, null=True, blank=True)
+    numero_bloque = models.IntegerField(null=True, blank=True)
+    descripcion = models.CharField(max_length=50, blank=False, null=True)
+    
+    def __str__(self):
+        return self.descripcion
 
 class TipoReserva(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.descripcion
+
 class TipoVehiculo(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.descripcion
 
 class Vehiculo(models.Model):
     patente = models.CharField(max_length=100, unique=True)
@@ -41,9 +79,11 @@ class Reserva(models.Model):
     bloque_termino = models.IntegerField(null=True, blank=True)
     estado_reserva = models.BooleanField(default=False)
 
-class EstadoEstacionamiento(models.Model):
-    descripcion = models.CharField(max_length=100, null=True, blank=True)
+class Boleta(models.Model):
+    numero_boleta = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="conductor")
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True, blank=True)
+    valor = models.IntegerField(null=True, blank=True)
 
-class BloqueDisponibilidad(models.Model):
-    descripcion = models.CharField(max_length=100, null=True, blank=True)
+
 
