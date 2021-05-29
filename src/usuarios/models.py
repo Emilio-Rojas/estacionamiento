@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
-from estacionamientos.models import Boleta
-
 class CustomUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
@@ -53,8 +51,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=15, null=True, blank=True)
     rut = models.CharField(max_length=25, blank=False, null=True, verbose_name=u'N° documento')
     gender = models.IntegerField(choices=Gender.choices, blank=False, null=True, default=Gender.OTHER)
-    tipo_usuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_usuario")
-    comuna_usuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="comuna_usuario")
+    tipo_usuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="usuario_tipo")
+    comuna_usuario = models.ForeignKey(ComunasUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="usuario_comuna")
     birth_date = models.DateField(blank=False, null=True, verbose_name=u'Fecha de Nacimiento')
     razon_social = models.CharField(max_length=60, blank=True, null=True, verbose_name=u'Razon Social')
     nombres_representante = models.CharField(max_length=80, blank=True, null=True, verbose_name=u'Nombres Representante')
@@ -83,18 +81,10 @@ class TipoCuenta(models.Model):
 class Deposito(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="usuario_deposito")
     rut = models.CharField(max_length=25, blank=False, null=True, verbose_name=u'N° documento')
-    tipo_banco = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_banco")
-    tipo_cuenta = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_cuenta")
+    tipo_banco = models.ForeignKey(TipoBanco, on_delete=models.CASCADE, null=True, blank=True, related_name="banco_tipo")
+    tipo_cuenta = models.ForeignKey(TipoCuenta, on_delete=models.CASCADE, null=True, blank=True, related_name="cuenta_tipo")
     numero_cuenta = models.CharField(max_length=100, null=True, blank=True)
     correo_comprobante = models.CharField(max_length=100, null=True, blank=True)
-
-class Pago(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_pago")
-    rut = models.CharField(max_length=25, blank=False, null=True, verbose_name=u'N° documento')
-    tipo_banco = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_banco")
-    tipo_cuenta = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_cuenta")
-    numero_cuenta = models.CharField(max_length=100, null=True, blank=True)
-    boleta = models.ForeignKey(Boleta, on_delete=models.CASCADE, null=True, blank=True)
 
 
 

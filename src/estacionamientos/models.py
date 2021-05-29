@@ -1,5 +1,5 @@
 from django.db import models
-from usuarios.models import User
+from usuarios.models import TipoBanco, TipoCuenta, User
 
 class TipoEstacionamiento(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
@@ -84,6 +84,14 @@ class Boleta(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="conductor")
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True, blank=True)
     valor = models.IntegerField(null=True, blank=True)
+
+class Pago(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_pago")
+    rut = models.CharField(max_length=25, blank=False, null=True, verbose_name=u'N° documento')
+    tipo_banco = models.ForeignKey(TipoBanco, on_delete=models.CASCADE, null=True, blank=True, related_name="pago_tipo_banco")
+    tipo_cuenta = models.ForeignKey(TipoCuenta, on_delete=models.CASCADE, null=True, blank=True, related_name="pago_tipo_cuenta")
+    numero_cuenta = models.CharField(max_length=100, null=True, blank=True)
+    boleta = models.ForeignKey(Boleta, on_delete=models.CASCADE, null=True, blank=True)
 
 
 
