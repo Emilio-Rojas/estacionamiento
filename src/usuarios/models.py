@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
+from estacionamientos.models import Boleta
+
 class CustomUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
@@ -86,6 +88,13 @@ class Deposito(models.Model):
     numero_cuenta = models.CharField(max_length=100, null=True, blank=True)
     correo_comprobante = models.CharField(max_length=100, null=True, blank=True)
 
+class Pago(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_pago")
+    rut = models.CharField(max_length=25, blank=False, null=True, verbose_name=u'N° documento')
+    tipo_banco = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_banco")
+    tipo_cuenta = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True, blank=True, related_name="tipo_cuenta")
+    numero_cuenta = models.CharField(max_length=100, null=True, blank=True)
+    boleta = models.ForeignKey(Boleta, on_delete=models.CASCADE, null=True, blank=True)
 
 
 
