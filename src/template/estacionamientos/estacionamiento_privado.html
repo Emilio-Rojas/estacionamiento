@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Estacionamientos{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <h1>ESTACIONAMIENTOS PRIVADOS</h1>
+
+        <table border="1">
+
+            <tr style="background-color: rgb(102, 255, 153);">
+          
+              <th>Domicilio y Numero</th>
+          
+              <th>Estacionamientos</th>
+          
+              <th>Tipo de Estacionamientos</th>
+
+              
+            </tr>
+          
+            <tr style="background-color: rgb(255, 255, 255);">
+          
+              <th>Av.Domingo Santa Maria #1342</th>
+          
+              <td>2 Estacionamientos disponibles</td>
+          
+              <td>Privado</td>
+          
+            </tr>
+          
+            <tr style="background-color: rgb(255, 255, 255);">
+          
+              <th>Calle 5 de abril #1243</th>
+          
+              <td>1 Estacionamiento</td>
+          
+              <td>Privado</td>
+          
+            </tr>
+          
+            <tr style="background-color: rgb(255, 255, 255);">
+          
+              <th>Calle Vergara #1111</th>
+          
+              <td>3 estacionamientos</td>
+          
+              <td>Privado</td>
+          
+            </tr>
+          
+          </table>
+
+
+
+
+          <input type="button" value="Pagar Estacionamiento">
+          
+          
+        
+    </div>
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}
