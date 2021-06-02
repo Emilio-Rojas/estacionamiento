@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# Create your views here.
+def administrar_estacionamientos(request):
+    return render(request, 'estacionamientos/administrar_estacionamiento.html', {})
