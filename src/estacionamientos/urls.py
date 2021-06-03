@@ -7,5 +7,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('privado/', administrar_estacionamientos, name='administrar-estacionamientos')
+    path('privado/', administrar_estacionamientos, name='administrar-estacionamientos'),
+    path('particular/', administrar_estacionamientos_particular, name='administrar-estacionamientos-particular'),
 ]

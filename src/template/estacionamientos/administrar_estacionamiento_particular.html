@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Estacionamientos Disponibles{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+    <div class="container">
+    <br>
+    <br>
+    <br>
+<h1> Estacionamiento Disponibles ¿Cual Desea Seleccionar?</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+<section class="table-bordered">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th> Domicilio y numero </th>
+            <th> Estacionamientos</th>
+            <th> Tipo Estacionamiento </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></th>
+            <td>Providencia 1208</td>
+            <td> 1 Estacionamiento disponible </td>
+            <td> Particular</td>
+        </tr>
+        <tr>
+            <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></th>
+            <td> Calle 5 de abril #1234</td>
+            <td> 2 Estacionamiento disponible </td>
+            <td> Ṕarticular </td>
+        </tr>
+    </tbody>
+    </table>
+
+    <input type="checkbox" aria-label="Checkbox for following text input">
+    <input type="date">
+    <br>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary">Pagar</button>
+    <br>
+    <br>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.784517958003!2d-70.62334118525644!3d-33.42886180378975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf1a32851349%3A0x66a6b85c1fe60182!2sProvidencia%201208!5e0!3m2!1ses!2scl!4v1622698084350!5m2!1ses!2scl" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}  
