@@ -41,7 +41,35 @@ def estacionamiento_particular_eliminar(request, id_estacionamiento):
 
     #CRUD ESTACIONAMIENTO PRIVADO
 
-def disponibilidad_privado(request):
+def estacionamiento_privado_disponibilidad(request):
     estacionamientos = Estacionamiento.objects.all().order_by('id')
-    return render(request, 'estacionamientos/disponibilidad_privado.html', {'estacionamientos': estacionamientos})
-    
+    return render(request, 'estacionamientos/estacionamiento_privado_disponibilidad.html', {'estacionamientos': estacionamientos})
+
+def estacionamiento_privado_agregar(request):
+    if request.method == 'POST':
+        form = AgregarHabitacionForms(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect('/estacionamiento/privado/disponibilidad')
+    else:
+        form = AgregarHabitacionForms()
+    return render(request, 'estacionamientos/estacionamiento_privado_agregar.html',{'form' : form})
+
+def estacionamiento_privado_editar(request, id_estacionamiento):
+    estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
+    if request.method == "GET":
+        form = EditarHabitacionForms(instance=estacionamiento)
+    else:
+        form = EditarHabitacionForms(request.POST, request.FILES,instance=estacionamiento)
+        if form.is_valid():
+            estacionamiento = form.save(commit=False)
+            estacionamiento.save()
+        return redirect('/estacionamiento/privado/disponibilidad')
+    return render(request, "estacionamientos/estacionamiento_privado_editar.html", {'form': form})
+
+def estacionamiento_privado_eliminar(request, id_estacionamiento):
+    estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
+    if request.method == 'POST':
+        estacionamiento.delete()
+        return redirect('/estacionamiento/privado/disponibilidad')
+    return render(request, 'estacionamientos/stacionamiento_privado_eliminar.html', {'estacionamiento': estacionamiento})

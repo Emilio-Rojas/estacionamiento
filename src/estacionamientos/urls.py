@@ -20,8 +20,13 @@ urlpatterns = [
 
     #Estacionamiento privados
 
-     path('privado/', include([
-       
+    path('privado/', include([
+        path('agregar/', estacionamiento_privado_agregar, name='estacionamiento-privado-agregar'),
+        path('listar/', estacionamiento_privado_disponibilidad, name='estacionamiento-privado-disponibilidad'),
+        path('editar/<int:id_estacionamiento>/', estacionamiento_privado_editar, name='estacionamiento-privado-editar'),
+        path('eliminar/<int:id_estacionamiento>/', estacionamiento_privado_eliminar, name='estacionamiento-privado-eliminar')
+
 
       ])),
+
 ]
