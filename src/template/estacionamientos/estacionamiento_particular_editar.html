@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Particulares{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Editar estacionamientos</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" class="formulario">
+                    <div class="formulario">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div>
+                            <a class="btn btn-secondary" href="/estacionamiento/particular/listar/">Volver</a>
+                            <button class="btn btn-success" type="submit">Editar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}

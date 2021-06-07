@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Particulares{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>¿Desea eliminar el estacionamiento seleccionado?</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" class="formulario">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <img src="{% static 'img/eliminar.png' %}" alt="Eliminar estacionamiento" style="height: 250px; width: 250px;">
+                    </div>
+                    <div>
+                        <a class= "btn btn-dark" href="/estacionamiento/particular/listar/">No, Volver</a>
+                        <button class="btn btn-danger" type="submit">Sí, Eliminar</button>
+                    </div>
+                </form>  
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}

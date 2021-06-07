@@ -35,13 +35,22 @@ class Estacionamiento(models.Model):
     calle = models.CharField(max_length=100, null=False, blank=False)
     numeracion = models.CharField(max_length=100, null=False, blank=False)
 
+    def __str__(self):
+        return self.calle
+
 class ImagenesEstacionamiento(models.Model):
     estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
+    def __str__(self):
+        return self.estacionamiento
+
 class Disponibilidad(models.Model):
     estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     fecha_disponibilidad = models.DateField(blank=False, null=True)
+
+    def __str__(self):
+        return self.fecha_disponibilidad
 
 class BloqueDisponibilidad(models.Model):
     disponibilidad = models.ForeignKey(Disponibilidad, on_delete=models.CASCADE, null=True, blank=True)
@@ -69,6 +78,9 @@ class Vehiculo(models.Model):
     rut_conductor = models.CharField(max_length=100, null=True, blank=True)
     tipo_vehiculo = models.ForeignKey(TipoVehiculo, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return self.patente
+
 class Reserva(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_reserva")
     estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
@@ -84,6 +96,9 @@ class Boleta(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="conductor")
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True, blank=True)
     valor = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.numero_boleta
 
 class Pago(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_pago")

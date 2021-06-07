@@ -37,8 +37,14 @@ class CustomUserManager(BaseUserManager):
 class TipoUsuario(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.descripcion
+
 class ComunasUsuario(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.descripcion
 
 class User(AbstractUser):
     class Gender(models.IntegerChoices):
@@ -75,8 +81,14 @@ class User(AbstractUser):
 class TipoBanco(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.descripcion
+
 class TipoCuenta(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.descripcion
 
 class Deposito(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="usuario_deposito")
