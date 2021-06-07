@@ -6,58 +6,47 @@
 
 {% block content %}
 <section class="index-content">
-    <div class="container">
-        <h1>ESTACIONAMIENTOS PRIVADOS</h1>
-
-        <table border="1">
-
-            <tr style="background-color: rgb(102, 255, 153);">
-          
-              <th>Domicilio y Numero</th>
-          
-              <th>Estacionamientos</th>
-          
-              <th>Tipo de Estacionamientos</th>
-
-              
+    <div class="container"> 
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#!">Busqueda De Estacionamientos</a>
+      
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>Tipo</th>
+              <th>Comuna</th>
+              <th>Estado</th>
+              <th>Calle</th>
+              <th>Numeración</th>
+              <th>Listar</th>
             </tr>
-          
-            <tr style="background-color: rgb(255, 255, 255);">
-          
-              <th>Av.Domingo Santa Maria #1342</th>
-          
-              <td>2 Estacionamientos disponibles</td>
-          
+          </thead>
+          <tbody>
+            <tr>
+              <tr style="background-color: rgb(125, 125, 125);">
               <td>Privado</td>
-          
+              <td>Vitacura</td>
+              <td>Disponible</td>
+              <td>Av.Dorsal</td>
+              <td>123</td>
+              <td><button type="button" class="btn btn-success">Seleccionar</button><button type="button" class="btn btn-danger">Eliminar</button><button type="button" class="btn btn-info">Info</button></td>
+
             </tr>
-          
-            <tr style="background-color: rgb(255, 255, 255);">
-          
-              <th>Calle 5 de abril #1243</th>
-          
-              <td>1 Estacionamiento</td>
-          
+            <tr>
+              <tr style="background-color: rgb(125, 125, 125);">
               <td>Privado</td>
-          
+              <td>Lo Barnechea</td>
+              <td>Disponible</td>
+              <td>Av.Esperanza</td>
+              <td>321</td>
+              <td><button type="button" class="btn btn-success">Seleccionar</button><button type="button" class="btn btn-danger">Eliminar</button><button type="button" class="btn btn-info">Info</button></td>
             </tr>
-          
-            <tr style="background-color: rgb(255, 255, 255);">
-          
-              <th>Calle Vergara #1111</th>
-          
-              <td>3 estacionamientos</td>
-          
-              <td>Privado</td>
-          
-            </tr>
-          
-          </table>
+          </tbody>
+        </table>
 
+        <button type="button" class="btn btn-success">Pagar</button>
 
-
-
-          <input type="button" value="Pagar Estacionamiento">
+        </nav>
           
           
         
