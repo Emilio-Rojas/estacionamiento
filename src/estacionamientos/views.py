@@ -3,17 +3,6 @@ from estacionamientos.forms import AgregarHabitacionForms, EditarHabitacionForms
 
 from estacionamientos.models import Estacionamiento
 
-def administrar_estacionamiento(request):
-    return render(request, 'estacionamientos/administrar_estacionamiento.html', {})
-
-def estacionamiento_privado(request):
-    return render(request, 'estacionamientos/estacionamiento_privado.html', {})
-
-def disponibilidad_estacionamiento(request):
-    return render(request, 'estacionamientos/disponibilidad_estacionamiento.html', {})
-
-
-
 #CRUD ESTACIONAMIENTO PARTICULAR
 
 def estacionamiento_particular_listar(request):
@@ -48,3 +37,11 @@ def estacionamiento_particular_eliminar(request, id_estacionamiento):
         estacionamiento.delete()
         return redirect('/estacionamiento/particular/listar')
     return render(request, 'estacionamientos/estacionamiento_particular_eliminar.html', {'estacionamiento': estacionamiento})
+
+
+    #CRUD ESTACIONAMIENTO PRIVADO
+
+def disponibilidad_privado(request):
+    estacionamientos = Estacionamiento.objects.all().order_by('id')
+    return render(request, 'estacionamientos/disponibilidad_privado.html', {'estacionamientos': estacionamientos})
+    
