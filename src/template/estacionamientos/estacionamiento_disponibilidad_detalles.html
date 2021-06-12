@@ -29,8 +29,8 @@
                                         <td>{{ disponibilidad.fecha_disponibilidad }}</td>
                                         <td>
                                             <a class="btn btn-warning" href="#" role="button">Bloques</a>
-                                            <a class="btn btn-primary" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/editar/{{disponibilidad.id}}" role="button">Editar</a>
-                                            <a class="btn btn-danger" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/eliminar/{{disponibilidad.id}}" role="button">Eliminar</a>
+                                            <a class="btn btn-primary" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/editar/{{disponibilidad.id}}" role="button">Editar</a>
+                                            <a class="btn btn-danger" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/eliminar/{{disponibilidad.id}}" role="button">Eliminar</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -40,7 +40,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <a class="btn btn-success" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/agregar/" role="button">Agregar</a>
+                        <a class="btn btn-success" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/agregar/" role="button">Agregar</a>
                     </div>
                 {% else %}
                     <h3>No existen disponibilidades para este estacionamiento</h3>

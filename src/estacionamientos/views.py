@@ -54,7 +54,7 @@ def estacionamiento_disponibilidad_agregar(request, id_estacionamiento):
         form = AgregarDisponibilidadForms(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/estacionamiento/detalle/' + str(id_estacionamiento))
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/')
     else:
         form = AgregarDisponibilidadForms()
     return render(request, 'estacionamientos/estacionamiento_disponibilidad_agregar.html',{'form' : form, 'id_estacionamiento':id_estacionamiento})
@@ -69,7 +69,7 @@ def estacionamiento_disponibilidad_editar(request, id_estacionamiento, id_dispon
         if form.is_valid():
             estacionamiento = form.save(commit=False)
             estacionamiento.save()
-        return redirect('/estacionamiento/disponibilidad/' + str(id_estacionamiento))
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/')
     return render(request, "estacionamientos/estacionamiento_disponibilidad_editar.html", {'form': form, 'id_estacionamiento': id_estacionamiento})
 
 def estacionamiento_disponibilidad_eliminar(request, id_estacionamiento, id_disponibilidad):
@@ -77,7 +77,7 @@ def estacionamiento_disponibilidad_eliminar(request, id_estacionamiento, id_disp
     disponibilidad = Disponibilidad.objects.get(id=id_disponibilidad)
     if request.method == 'POST':
         disponibilidad.delete()
-        return redirect('/estacionamiento/disponibilidad/' + str(id_estacionamiento))
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/')
     return render(request, 'estacionamientos/estacionamiento_disponibilidad_eliminar.html', {'id_estacionamiento': id_estacionamiento})
 
 #CRUD ESTACIONAMIENTO PRIVADO
