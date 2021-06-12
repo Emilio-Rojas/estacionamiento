@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Bloque{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Listar bloques disponibilidad</h1>
+            </div>
+            <div class="card-body">
+                {% if disponibilidad %}
+                    <table class="table table-striped table-dark text-light text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">DISPONIBILIDAD</th>
+                                <th scope="col">BLOQUE INICIO</th>
+                                <th scope="col">BLOQUE TERMINO</th>
+                                <th scope="col">ACCION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if bloques %}
+                                {% for bloque in bloques %}
+                                    <tr>
+                                        <td>{{ bloque.disponibilidad.fecha_disponibilidad }}</td>
+                                        <td>{{ bloque.bloque_inicio }}</td>
+                                        <td>{{ bloque.bloque_termino }}</td>
+                                        <td>
+                                            <a class="btn btn-primary" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{id_disponibilidad}}/bloque/editar/{{bloque.id}}/" role="button">Editar</a>
+                                            <a class="btn btn-danger" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{id_disponibilidad}}/bloque/eliminar/{{bloque.id}}/" role="button">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <h1>No hay registros de bloques</h1>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <div>
+                        <a class="btn btn-success" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{id_disponibilidad}}/bloque/agregar/" role="button">Agregar</a>
+                    </div>
+                {% else %}
+                    <h3>No existen disponibilidades para agregar bloques</h3>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}

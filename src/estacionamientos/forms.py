@@ -82,3 +82,29 @@ class EditarDisponibilidadForms(forms.ModelForm):
         widgets = {
             'fecha_disponibilidad': forms.SelectDateWidget(attrs={'class': 'form-control'}),
         }
+
+class AgregarBloqueDisponibilidadForms(forms.ModelForm):
+    class Meta:
+        model = BloqueDisponibilidad
+        fields = [
+            'disponibilidad',
+            'bloque_inicio',
+            'bloque_termino',
+        ]
+        labels = {
+            'disponibilidad': 'Disponibilidad',
+            'bloque_inicio': 'Bloque Inicio',
+            'bloque_termino': 'Bloque Termino',
+        }
+
+class EditarBloqueDisponibilidadForms(forms.ModelForm):
+    class Meta:
+        model = BloqueDisponibilidad
+        fields = [
+            'bloque_inicio',
+            'bloque_termino',
+        ]
+        labels = {
+            'bloque_inicio': 'Bloque Inicio',
+            'bloque_termino': 'Bloque Termino',
+        }

@@ -23,13 +23,11 @@ urlpatterns = [
   path('<int:id_estacionamiento>/disponibilidad/editar/<int:id_disponibilidad>/', estacionamiento_disponibilidad_editar, name='disponibilidad-editar'),
   path('<int:id_estacionamiento>/disponibilidad/eliminar/<int:id_disponibilidad>/', estacionamiento_disponibilidad_eliminar, name='disponibilidad-eliminar'),
   
-
-  # path('disponibilidad/', include([
-  #     path('<int:id_estacionamiento>/', estacionamiento_disponibilidad_detalle, name='disponibilidad-detalle'),  
-  #     path('<int:id_estacionamiento>/agregar/', estacionamiento_disponibilidad_agregar, name='disponibilidad-agregar'), 
-  #     path('<int:id_estacionamiento>/editar/<int:id_disponibilidad>', estacionamiento_disponibilidad_editar, name='disponibilidad-editar'),
-  #     path('<int:id_estacionamiento>/eliminar/<int:id_disponibilidad>', estacionamiento_disponibilidad_eliminar, name='disponibilidad-eliminar')
-  # ])),
+  # Bloques por disponibilidad
+  path('<int:id_estacionamiento>/disponibilidad/<int:id_disponibilidad>/bloque/listar/', bloques_diponibilidad_listar, name='bloques-listar'),  
+  path('<int:id_estacionamiento>/disponibilidad/<int:id_disponibilidad>/bloque/agregar/', bloques_diponibilidad_agregar, name='bloques-agregar'), 
+  path('<int:id_estacionamiento>/disponibilidad/<int:id_disponibilidad>/bloque/editar/<int:id_bloque>/', bloques_diponibilidad_editar, name='bloques-editar'),
+  path('<int:id_estacionamiento>/disponibilidad/<int:id_disponibilidad>/bloque/eliminar/<int:id_bloque>/', bloques_diponibilidad_eliminar, name='bloques-eliminar'),
 
   #Estacionamiento privados
   path('privado/', include([

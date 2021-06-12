@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import related
 from usuarios.models import TipoBanco, TipoCuenta, User
 
 class TipoEstacionamiento(models.Model):
@@ -50,15 +51,21 @@ class Disponibilidad(models.Model):
     fecha_disponibilidad = models.DateField(blank=False, null=True)
 
     def __str__(self):
-        return self.fecha_disponibilidad
+        return str(self.fecha_disponibilidad)
 
-class BloqueDisponibilidad(models.Model):
-    disponibilidad = models.ForeignKey(Disponibilidad, on_delete=models.CASCADE, null=True, blank=True)
-    numero_bloque = models.IntegerField(null=True, blank=True)
+class Bloque(models.Model):
     descripcion = models.CharField(max_length=50, blank=False, null=True)
-    
+
     def __str__(self):
         return self.descripcion
+
+class BloqueDisponibilidad(models.Model):
+    disponibilidad = models.ForeignKey(Disponibilidad, on_delete=models.CASCADE, null=True, blank=True, related_name ="bloque_disponibilidad")
+    bloque_inicio = models.ForeignKey(Bloque, on_delete=models.CASCADE, null=True, blank=True, related_name="bloque_inicio_disponibilidad")
+    bloque_termino = models.ForeignKey(Bloque, on_delete=models.CASCADE, null=True, blank=True, related_name="bloque_termino_disponibilidad")
+    
+    def __str__(self):
+        return self.disponibilidad
 
 class TipoReserva(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)

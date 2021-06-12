@@ -28,7 +28,7 @@
                                         <td>{{ disponibilidad.estacionamiento }}</td>
                                         <td>{{ disponibilidad.fecha_disponibilidad }}</td>
                                         <td>
-                                            <a class="btn btn-warning" href="#" role="button">Bloques</a>
+                                            <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{disponibilidad.id}}/bloque/listar/" role="button">Bloques</a>
                                             <a class="btn btn-primary" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/editar/{{disponibilidad.id}}" role="button">Editar</a>
                                             <a class="btn btn-danger" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/eliminar/{{disponibilidad.id}}" role="button">Eliminar</a>
                                         </td>

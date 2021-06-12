@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from estacionamientos.forms import AgregarDisponibilidadForms, AgregarHabitacionForms, EditarDisponibilidadForms, EditarHabitacionForms
+from estacionamientos.forms import AgregarBloqueDisponibilidadForms, AgregarDisponibilidadForms, AgregarHabitacionForms, EditarBloqueDisponibilidadForms, EditarDisponibilidadForms, EditarHabitacionForms
 
-from estacionamientos.models import Disponibilidad, Estacionamiento
+from estacionamientos.models import BloqueDisponibilidad, Disponibilidad, Estacionamiento
 
 def disponibilidad_estacionamiento(request):
     return render(request, 'estacionamientos/disponibilidad_estacionamiento.html', {})
@@ -79,6 +79,51 @@ def estacionamiento_disponibilidad_eliminar(request, id_estacionamiento, id_disp
         disponibilidad.delete()
         return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/')
     return render(request, 'estacionamientos/estacionamiento_disponibilidad_eliminar.html', {'id_estacionamiento': id_estacionamiento})
+
+
+#CRUD BLOQUES POR DISPONIBILIDAD
+
+def bloques_diponibilidad_listar(request, id_estacionamiento, id_disponibilidad):
+    estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
+    disponibilidad = Disponibilidad.objects.filter(id=id_disponibilidad)
+    id_disponibilidad = id_disponibilidad
+    bloques = BloqueDisponibilidad.objects.filter(disponibilidad=id_disponibilidad)
+    return render(request, 'estacionamientos/bloques/bloques_disponibilidad_listar.html', {'estacionamiento': estacionamiento, 'disponibilidad':disponibilidad, 'id_disponibilidad':id_disponibilidad,'bloques': bloques})
+
+def bloques_diponibilidad_agregar(request, id_estacionamiento, id_disponibilidad):
+    id_estacionamiento = id_estacionamiento
+    id_disponibilidad = id_disponibilidad
+    if request.method == 'POST':
+        form = AgregarBloqueDisponibilidadForms(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/' + str(id_disponibilidad) + '/bloque/listar/')
+    else:
+        form = AgregarBloqueDisponibilidadForms()
+    return render(request, 'estacionamientos/bloques/bloques_disponibilidad_agregar.html',{'form' : form, 'id_estacionamiento': id_estacionamiento ,'id_disponibilidad': id_disponibilidad})
+
+def bloques_diponibilidad_editar(request, id_estacionamiento, id_disponibilidad, id_bloque):
+    id_estacionamiento = id_estacionamiento
+    id_disponibilidad = id_disponibilidad
+    bloque = BloqueDisponibilidad.objects.get(id=id_bloque)
+    if request.method == "GET":
+        form = EditarBloqueDisponibilidadForms(instance=bloque)
+    else:
+        form = EditarBloqueDisponibilidadForms(request.POST, request.FILES,instance=bloque)
+        if form.is_valid():
+            estacionamiento = form.save(commit=False)
+            estacionamiento.save()
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/' + str(id_disponibilidad) + '/bloque/listar/')
+    return render(request, "estacionamientos/bloques/bloques_disponibilidad_editar.html", {'form': form, 'id_estacionamiento': id_estacionamiento, 'id_disponibilidad': id_disponibilidad})
+
+def bloques_diponibilidad_eliminar(request, id_estacionamiento, id_disponibilidad, id_bloque):
+    id_estacionamiento = id_estacionamiento
+    id_disponibilidad = id_disponibilidad
+    bloque = BloqueDisponibilidad.objects.get(id=id_bloque)
+    if request.method == 'POST':
+        bloque.delete()
+        return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/' + str(id_disponibilidad) + '/bloque/listar/')
+    return render(request, 'estacionamientos/bloques/bloques_disponibilidad_eliminar.html', {'id_estacionamiento': id_estacionamiento, 'id_disponibilidad': id_disponibilidad})
 
 #CRUD ESTACIONAMIENTO PRIVADO
 
