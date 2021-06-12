@@ -54,3 +54,31 @@ class EditarHabitacionForms(forms.ModelForm):
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'AV.Example'}),
             'numeracion': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class AgregarDisponibilidadForms(forms.ModelForm):
+    class Meta:
+        model = Disponibilidad
+        fields = [
+            'estacionamiento',
+            'fecha_disponibilidad',
+        ]
+        labels = {
+            'estacionamiento': 'Disponibilidad',
+            'fecha_disponibilidad': 'Fecha Disponibilidad',
+        }
+        widgets = {
+            'fecha_disponibilidad': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+        }
+
+class EditarDisponibilidadForms(forms.ModelForm):
+    class Meta:
+        model = Disponibilidad
+        fields = [
+            'fecha_disponibilidad',
+        ]
+        labels = {
+            'fecha_disponibilidad': 'Fecha Disponibilidad',
+        }
+        widgets = {
+            'fecha_disponibilidad': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+        }

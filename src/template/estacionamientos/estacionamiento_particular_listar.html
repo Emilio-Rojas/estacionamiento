@@ -35,8 +35,9 @@
                                     <td>{{ estacionamiento.calle }}</td>
                                     <td>{{ estacionamiento.numeracion }}</td>
                                     <td>
+                                        <a class="btn btn-warning" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/" role="button">Disponibilidad</a>
                                         <a class="btn btn-primary" href="/estacionamiento/particular/editar/{{ estacionamiento.id }}/" role="button">Editar</a>
-                                        <a class="btn btn-danger" href="/estacionamiento/particular/eliminar/{{ estacionamiento.id }}" role="button">Eliminar</a>
+                                        <a class="btn btn-danger" href="/estacionamiento/particular/eliminar/{{ estacionamiento.id }}/" role="button">Eliminar</a>
                                     </td>
                                 </tr>
                             {% endfor %}

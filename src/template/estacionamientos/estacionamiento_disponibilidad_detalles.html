@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Disponibilidad{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Agregar Disponibilidad</h1>
+            </div>
+            <div class="card-body">
+                {% if estacionamiento %}
+                    <table class="table table-striped table-dark text-light text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">DIRECCIÓN</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="col">ACCION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if disponibilidades %}
+                                {% for disponibilidad in disponibilidades %}
+                                    <tr>
+                                        <td>{{ disponibilidad.estacionamiento }}</td>
+                                        <td>{{ disponibilidad.fecha_disponibilidad }}</td>
+                                        <td>
+                                            <a class="btn btn-warning" href="#" role="button">Bloques</a>
+                                            <a class="btn btn-primary" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/editar/{{disponibilidad.id}}" role="button">Editar</a>
+                                            <a class="btn btn-danger" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/eliminar/{{disponibilidad.id}}" role="button">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <h1>No hay registros de disponibilidad</h1>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <div>
+                        <a class="btn btn-success" href="/estacionamiento/disponibilidad/{{ estacionamiento.id }}/agregar/" role="button">Agregar</a>
+                    </div>
+                {% else %}
+                    <h3>No existen disponibilidades para este estacionamiento</h3>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}
