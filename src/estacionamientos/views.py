@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from estacionamientos.forms import AgregarBloqueDisponibilidadForms, AgregarDisponibilidadForms, AgregarHabitacionForms, EditarBloqueDisponibilidadForms, EditarDisponibilidadForms, EditarHabitacionForms
+from estacionamientos.forms import AgregarBloqueDisponibilidadForms, AgregarDisponibilidadForms, AgregarEstacionamientoForms, EditarBloqueDisponibilidadForms, EditarDisponibilidadForms, EditarEstacionamientoForms
 
 from estacionamientos.models import BloqueDisponibilidad, Disponibilidad, Estacionamiento
+
+import json
 
 def disponibilidad_estacionamiento(request):
     return render(request, 'estacionamientos/disponibilidad_estacionamiento.html', {})
@@ -14,20 +16,29 @@ def estacionamiento_particular_listar(request):
 
 def estacionamiento_particular_agregar(request):
     if request.method == 'POST':
-        form = AgregarHabitacionForms(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        form = AgregarEstacionamientoForms(request.POST, request.FILES)
+        request_json = json.loads(json.dumps(request.POST))
+        print(request_json)
+        estacionamiento = Estacionamiento.objects.filter(user=request_json["user"])
+        print(estacionamiento)
+        if Estacionamiento.objects.filter(user=request_json["user"], calle=request_json["calle"]):
+            print("entro")      
+            # if form.is_valid():
+            #     form.save()
+        else:
+            print("valio")
+        
         return redirect('/estacionamiento/particular/listar')
     else:
-        form = AgregarHabitacionForms()
+        form = AgregarEstacionamientoForms()
     return render(request, 'estacionamientos/estacionamiento_particular_agregar.html',{'form' : form})
 
 def estacionamiento_particular_editar(request, id_estacionamiento):
     estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
     if request.method == "GET":
-        form = EditarHabitacionForms(instance=estacionamiento)
+        form = EditarEstacionamientoForms(instance=estacionamiento)
     else:
-        form = EditarHabitacionForms(request.POST, request.FILES,instance=estacionamiento)
+        form = EditarEstacionamientoForms(request.POST, request.FILES,instance=estacionamiento)
         if form.is_valid():
             estacionamiento = form.save(commit=False)
             estacionamiento.save()
@@ -133,20 +144,20 @@ def estacionamiento_privado_listar(request):
 
 def estacionamiento_privado_agregar(request):
     if request.method == 'POST':
-        form = AgregarHabitacionForms(request.POST, request.FILES)
+        form = AgregarEstacionamientoForms(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return redirect('/estacionamiento/privado/listar')
     else:
-        form = AgregarHabitacionForms()
+        form = AgregarEstacionamientoForms()
     return render(request, 'estacionamientos/estacionamiento_privado_agregar.html',{'form' : form})
 
 def estacionamiento_privado_editar(request, id_estacionamiento):
     estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
     if request.method == "GET":
-        form = EditarHabitacionForms(instance=estacionamiento)
+        form = EditarEstacionamientoForms(instance=estacionamiento)
     else:
-        form = EditarHabitacionForms(request.POST, request.FILES,instance=estacionamiento)
+        form = EditarEstacionamientoForms(request.POST, request.FILES,instance=estacionamiento)
         if form.is_valid():
             estacionamiento = form.save(commit=False)
             estacionamiento.save()

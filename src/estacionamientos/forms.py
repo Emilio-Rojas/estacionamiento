@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import *
 
-class AgregarHabitacionForms(forms.ModelForm):
+class AgregarEstacionamientoForms(forms.ModelForm):
     class Meta:
         model = Estacionamiento
         fields = [
@@ -26,12 +26,12 @@ class AgregarHabitacionForms(forms.ModelForm):
             'numeracion': 'Numeración',
         }
         widgets = {
-            'rut': forms.TextInput(attrs={'class': 'form-control'}),
+            'rut': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese rut'}),
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'AV.Example'}),
-            'numeracion': forms.TextInput(attrs={'class': 'form-control'}),
+            'numeracion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '1234'}),
         }
 
-class EditarHabitacionForms(forms.ModelForm):
+class EditarEstacionamientoForms(forms.ModelForm):
     class Meta:
         model = Estacionamiento
         fields = [
