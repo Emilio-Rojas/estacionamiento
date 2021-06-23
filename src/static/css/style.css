@@ -489,3 +489,6 @@ ul.pattern .color12 {
 .formulario input select{
     margin-right: 60px;
 }
+.rut-error {
+	color: red;
+}

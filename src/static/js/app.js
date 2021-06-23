@@ -223,15 +223,6 @@ jQuery(function ($) {
                 event.preventDefault();
             });
 
-            $(window).stellar({
-                horizontalScrolling: false,
-                responsive: true,
-                scrollProperty: 'scroll',
-                parallaxElements: false,
-                horizontalOffset: 0,
-                verticalOffset: 0
-            });
-
             if(this.$testiSlider.length > 0) {
                 this.$testiSlider.owlCarousel({
                     // Most important owl features

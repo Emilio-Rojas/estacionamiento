@@ -19,8 +19,7 @@
                             <th scope="col">COMUNA</th>
                             <th scope="col">CATEGORÍA</th>
                             <th scope="col">ESTADO</th>
-                            <th scope="col">CALLE</th>
-                            <th scope="col">NUMERACIÓN</th>
+                            <th scope="col">DIRECCIÓN</th>
                             <th scope="col">ACCION</th>
                         </tr>
                     </thead>
@@ -32,8 +31,7 @@
                                     <td>{{ estacionamiento.comuna_estacionamiento }}</td>
                                     <td>{{ estacionamiento.categoria_estacionamiento }}</td>
                                     <td>{{ estacionamiento.estado_estacionamiento }}</td>
-                                    <td>{{ estacionamiento.calle }}</td>
-                                    <td>{{ estacionamiento.numeracion }}</td>
+                                    <td>{{ estacionamiento.calle }} #{{ estacionamiento.numeracion }}</td>
                                     <td>
                                         <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/" role="button">Disponibilidad</a>
                                         <a class="btn btn-primary" href="/estacionamiento/particular/editar/{{ estacionamiento.id }}/" role="button">Editar</a>
@@ -54,5 +52,6 @@
     </div>
 </section>
 {% endblock%}
+
 
 {% block footer %} {% include 'base/footer.html' %} {% endblock %}
