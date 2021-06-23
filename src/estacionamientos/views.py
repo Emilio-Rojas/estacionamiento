@@ -158,4 +158,4 @@ def estacionamiento_privado_eliminar(request, id_estacionamiento):
     if request.method == 'POST':
         estacionamiento.delete()
         return redirect('/estacionamiento/privado/listar')
-    return render(request, 'estacionamientos/stacionamiento_privado_eliminar.html', {'estacionamiento': estacionamiento})
+    return render(request, 'estacionamientos/estacionamiento_privado_eliminar.html', {'estacionamiento': estacionamiento})
