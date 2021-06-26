@@ -6,7 +6,13 @@ from estacionamientos.models import BloqueDisponibilidad, Disponibilidad, Estaci
 import json
 
 def disponibilidad_estacionamiento(request):
-    return render(request, 'estacionamientos/disponibilidad_estacionamiento.html', {})
+    estacionamientos = Estacionamiento.objects.all()
+    return render(request, 'estacionamientos/disponibilidad_estacionamiento.html', {'estacionamientos': estacionamientos})
+
+def disponibilidad_estacionamiento_detalle(request, id_estacionamiento):
+    estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
+    disponibilidades = Disponibilidad.objects.filter(estacionamiento=id_estacionamiento)
+    return render(request, 'estacionamientos/disponibilidad_estacionamiento_detalles.html', {'estacionamiento': estacionamiento, 'disponibilidades': disponibilidades})
 
 #CRUD ESTACIONAMIENTO PARTICULAR
 

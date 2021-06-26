@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Estacionamientos Disponibles{% endblock %}
+{% block title %}Particulares{% endblock %}
 {% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
 
 {% block content %}
@@ -9,46 +9,37 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h1>Estacionamiento Disponibles</h1>
+                <h1>Detalle Disponibilidad</h1>
             </div>
             <div class="card-body">
-                <h4 class="card-title">¿Cuál Desea Seleccionar?</h4>
-                <table class="table table-bordered pr-2 pl-2">
+                <table class="table table-striped table-dark text-light text-center">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th> Domicilio y numero </th>
-                            <th> Estacionamientos</th>
-                            <th> Tipo Estacionamiento </th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Comuna</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input">
-                            </th>
-                            <td>Providencia 1208</td>
-                            <td> 1 Estacionamiento disponible </td>
-                            <td> Particular</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input">
-                            </th>
-                            <td> Calle 5 de abril #1234</td>
-                            <td> 2 Estacionamiento disponible </td>
-                            <td> Particular </td>
-                        </tr>
+                        {% if estacionamientos %}
+                            {% for estacionamiento in estacionamientos %}
+                                <tr>
+                                    <td>{{ estacionamiento.tipo_estacionamiento }}</td>
+                                    <td>{{ estacionamiento.calle }} {{ estacionamiento.numeracion }}</td>
+                                    <td>{{ estacionamiento.comuna_estacionamiento }} </td>
+                                    <td>{{ estacionamiento.categoria_estacionamiento }}</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad_detalle/" role="button">DETALLE  </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <h1>No hay registros de estacionamientos</h1>
+                        {% endif %}
                     </tbody>
                 </table>
-                <div class="p-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                    <input type="date">
-                    <button type="button" class="btn btn-primary">Pagar</button>
-                </div>
-                <div>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.784517958003!2d-70.62334118525644!3d-33.42886180378975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf1a32851349%3A0x66a6b85c1fe60182!2sProvidencia%201208!5e0!3m2!1ses!2scl!4v1622698084350!5m2!1ses!2scl"
-                        width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
             </div>
         </div>
     </div>
