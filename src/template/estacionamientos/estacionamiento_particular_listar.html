@@ -15,6 +15,7 @@
                 <table class="table table-striped table-dark text-light text-center">
                     <thead>
                         <tr>
+                            <th scope="col">USUARIO</th>
                             <th scope="col">TIPO</th>
                             <th scope="col">COMUNA</th>
                             <th scope="col">CATEGORÍA</th>
@@ -27,6 +28,7 @@
                         {% if estacionamientos %}
                             {% for estacionamiento in estacionamientos %}
                                 <tr>
+                                    <td>{{ estacionamiento.user }}</td>
                                     <td>{{ estacionamiento.tipo_estacionamiento }}</td>
                                     <td>{{ estacionamiento.comuna_estacionamiento }}</td>
                                     <td>{{ estacionamiento.categoria_estacionamiento }}</td>
