@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Mapa{% endblock %}
+{% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
+
+{% block content %}
+<section class="index-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Mapa estacionamiento</h1>
+            </div>
+            <div class="card-body">
+                <p>{{direccion}}</p>
+                <iframe
+                    width="600"
+                    height="450"
+                    style="border:0"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA2sKKeGwDV1EECZIH1krTOnleHHaEQmMI&q={{direccion}},Santiago+Chile">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}
