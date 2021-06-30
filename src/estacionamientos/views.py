@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from estacionamientos.forms import AgregarBloqueDisponibilidadForms, AgregarDisponibilidadForms, AgregarEstacionamientoForms, EditarBloqueDisponibilidadForms, EditarDisponibilidadForms, EditarEstacionamientoForms
 
 from estacionamientos.models import BloqueDisponibilidad, Disponibilidad, Estacionamiento
-from pygeocoder import Geocoder
+#from pygeocoder import Geocoder
 import json
 
 def disponibilidad_estacionamiento(request):
