@@ -27,13 +27,16 @@ def estacionamiento_particular_agregar(request):
         print(request_json)
         estacionamiento = Estacionamiento.objects.filter(user=request_json["user"])
         # print(estacionamiento)
-        # if Estacionamiento.objects.filter(user=request_json["user"], calle=request_json["calle"]):
-        #     print("entro")      
-        if form.is_valid():
-            form.save()
-        # else:
-        #     print("valio")
-        
+        if Estacionamiento.objects.filter(user=request_json["user"]):
+            print("entro")  
+            if Estacionamiento.objects.filter(calle=request_json["calle"]):    
+                if form.is_valid():
+                    form.save()
+            else:
+                print("Se esta intentando de ingresar una dirección diferente!")
+        else:
+            if form.is_valid():
+                form.save()
         return redirect('/estacionamiento/particular/listar')
     else:
         form = AgregarEstacionamientoForms()
