@@ -41,7 +41,6 @@ class Estacionamiento(models.Model):
 
 class ImagenesEstacionamiento(models.Model):
     estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.estacionamiento
