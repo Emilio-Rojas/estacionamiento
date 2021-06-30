@@ -1,2 +1,4 @@
 myvenv
 *.pyc
+.DS_Store
+src/db.sqlite3
