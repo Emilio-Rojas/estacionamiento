@@ -17,7 +17,7 @@
                         <tr>
                             <th scope="col">USUARIO</th>
                             <th scope="col">TIPO</th>
-                            <th scope="col">COMUNA</th>
+                            <th scope="col">PRECIO</th>
                             <th scope="col">CATEGORÍA</th>
                             <th scope="col">ESTADO</th>
                             <th scope="col">DIRECCIÓN</th>
@@ -30,7 +30,7 @@
                                 <tr>
                                     <td>{{ estacionamiento.user }}</td>
                                     <td>{{ estacionamiento.tipo_estacionamiento }}</td>
-                                    <td>{{ estacionamiento.comuna_estacionamiento }}</td>
+                                    <td>${{ estacionamiento.precio_base }}</td>
                                     <td>{{ estacionamiento.categoria_estacionamiento }}</td>
                                     <td>{{ estacionamiento.estado_estacionamiento }}</td>
                                     <td>{{ estacionamiento.calle }} #{{ estacionamiento.numeracion }}</td>

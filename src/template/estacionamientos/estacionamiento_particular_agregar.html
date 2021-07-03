@@ -30,10 +30,7 @@
 {% endblock%}
 {% block scripts %}
 <script>
-    console.log("Se inicia!")
-    //document.getElementById("id_tipo_estacionamiento").selectedIndex = "1"; 
-    document.getElementById("id_tipo_estacionamiento").value = "1"; 
-    //document.getElementById("id_tipo_estacionamiento").setAttribute("disabled", true);
+    document.getElementById("id_tipo_estacionamiento").value = "1";
     $('#id_tipo_estacionamiento').attr("disabled", true); 
     document.getElementById("id_comuna_estacionamiento").value = "3"; 
     document.getElementById("id_comuna_estacionamiento").setAttribute("disabled", true);

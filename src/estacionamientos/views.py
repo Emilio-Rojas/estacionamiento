@@ -29,11 +29,7 @@ def estacionamiento_particular_agregar(request):
     if request.method == 'POST':
         form = AgregarEstacionamientoForms(request.POST, request.FILES)
         request_json = json.loads(json.dumps(request.POST))
-        print(request_json)
-        estacionamiento = Estacionamiento.objects.filter(user=request_json["user"])
-        # print(estacionamiento)
         if Estacionamiento.objects.filter(user=request_json["user"]):
-            print("entro")  
             if Estacionamiento.objects.filter(calle=request_json["calle"]):    
                 if form.is_valid():
                     form.save()
@@ -53,11 +49,19 @@ def estacionamiento_particular_editar(request, id_estacionamiento):
         form = EditarEstacionamientoForms(instance=estacionamiento)
     else:
         form = EditarEstacionamientoForms(request.POST, request.FILES,instance=estacionamiento)
-        if form.is_valid():
-            estacionamiento = form.save(commit=False)
-            estacionamiento.save()
+        request_json = json.loads(json.dumps(request.POST))
+        if Estacionamiento.objects.filter(user=request_json["user"]):
+            if Estacionamiento.objects.filter(calle=request_json["calle"]):    
+                estacionamiento = form.save(commit=False)
+                estacionamiento.save()
+            else:
+                print("Se esta intentando de ingresar una dirección diferente!")
+        else:
+            if form.is_valid():
+                estacionamiento = form.save(commit=False)
+                estacionamiento.save()
         return redirect('/estacionamiento/particular/listar')
-    return render(request, "estacionamientos/estacionamiento_particular_editar.html", {'form': form})
+    return render(request, "estacionamientos/estacionamiento_particular_editar.html", {'form': form, 'estacionamiento': estacionamiento})
 
 def estacionamiento_particular_eliminar(request, id_estacionamiento):
     estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)

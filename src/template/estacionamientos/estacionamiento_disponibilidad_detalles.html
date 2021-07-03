@@ -18,6 +18,7 @@
                             <tr>
                                 <th scope="col">DIRECCIÓN</th>
                                 <th scope="col">FECHA</th>
+                                <th scope="col">PRECIO POR BLOQUE</th>
                                 <th scope="col">ACCION</th>
                             </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                 {% for disponibilidad in disponibilidades %}
                                     <tr>
                                         <td>{{ disponibilidad.estacionamiento }}</td>
+                                        <td>${{ disponibilidad.precio_bloque }}</td>
                                         <td>{{ disponibilidad.fecha_disponibilidad }}</td>
                                         <td>
                                             <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{disponibilidad.id}}/bloque/listar/" role="button">Bloques</a>

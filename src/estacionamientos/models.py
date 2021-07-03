@@ -35,6 +35,7 @@ class Estacionamiento(models.Model):
     estado_estacionamiento = models.ForeignKey(EstadoEstacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     calle = models.CharField(max_length=100, null=False, blank=False)
     numeracion = models.CharField(max_length=100, null=False, blank=False)
+    precio_base = models.IntegerField(default=0)
 
     def __str__(self):
         return self.calle
@@ -48,6 +49,7 @@ class ImagenesEstacionamiento(models.Model):
 class Disponibilidad(models.Model):
     estacionamiento = models.ForeignKey(Estacionamiento, on_delete=models.CASCADE, null=True, blank=True)
     fecha_disponibilidad = models.DateField(blank=False, null=True)
+    precio_bloque = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.fecha_disponibilidad)
