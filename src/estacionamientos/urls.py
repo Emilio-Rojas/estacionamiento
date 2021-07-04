@@ -11,6 +11,10 @@ urlpatterns = [
   path('disponibilidad/', disponibilidad_estacionamiento, name='disponibilidad-estacionamiento'),
   path('<int:id_estacionamiento>/disponibilidad_detalle/', disponibilidad_estacionamiento_detalle, name='disponibilidad_estacionamiento_detalle'),
   path('<int:id_estacionamiento>/disponibilidad_detalle/mapa', mapa_estacionamiento, name='mapa_estacionamiento'),
+
+  #Reserva Bloque
+  path('<int:id_estacionamiento>/disponibilidad_detalle/<int:id_disponibilidad>/bloque/listar/', diponibilidad_bloque_listar, name='disponibilidad_bloques-listar'),  
+
  
   #Estacionamiento particulares
   path('particular/', include([

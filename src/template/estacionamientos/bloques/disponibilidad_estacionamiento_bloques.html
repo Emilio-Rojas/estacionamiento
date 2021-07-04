@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Disponibilidad{% endblock %}
+{% block title %}Bloque{% endblock %}
 {% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
 
 {% block content %}
@@ -9,33 +9,38 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h1>Detalle de estacionamientos disponibles</h1>
+                <h1>Listar bloques disponibilidad</h1>
             </div>
             <div class="card-body">
-                {% if estacionamiento %}
+                {% if disponibilidad %}
+                {% for disponibilidad in disponibilidades %}
+                <tr>
+                    <td>${{ disponibilidad.precio_bloque }}</td>
+                </tr>
+            {% endfor %}
                     <table class="table table-striped table-dark text-light text-center">
                         <thead>
                             <tr>
-                                <th scope="col">DIRECCIÓN</th>
-                                <th scope="col">PRECIO</th>
-                                <th scope="col">FECHA</th>
-                                <th scope="col">BLOQUES</th>
+                                <th scope="col">DISPONIBILIDAD</th>
+                                <th scope="col">BLOQUE INICIO</th>
+                                <th scope="col">BLOQUE TERMINO</th>
+                                <th scope="col">ACCION</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% if disponibilidades %}
-                                {% for disponibilidad in disponibilidades %}
+                            {% if bloques %}
+                                {% for bloque in bloques %}
                                     <tr>
-                                        <td>{{ estacionamiento.calle }} {{ estacionamiento.numeracion }}</td>
-                                        <td>${{ disponibilidad.precio_bloque }}</td>
-                                        <td>{{ disponibilidad.fecha_disponibilidad }}</td>
+                                        <td>{{ bloque.disponibilidad.fecha_disponibilidad }}</td>
+                                        <td>{{ bloque.bloque_inicio }}</td>
+                                        <td>{{ bloque.bloque_termino }}</td>
                                         <td>
-                                        <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad_detalle/{{disponibilidad.id}}/bloque/listar/" role="button">Bloques</a>
+                                            <a class="btn btn-primary" href="" role="button">Reservar</a> 
                                         </td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
-                                <h1>No hay registros de disponibilidad</h1>
+                                <h1>No hay registros de bloques</h1>
                             {% endif %}
                         </tbody>
                     </table>
@@ -43,7 +48,7 @@
                         <a class="btn btn-success" href="javascript: history.go(-1)">Volver</a>
                     </div>
                 {% else %}
-                    <h3>No existen disponibilidades para este estacionamiento</h3>
+                    <h3>No existen disponibilidades para agregar bloques</h3>
                 {% endif%}
             </div>
         </div>
