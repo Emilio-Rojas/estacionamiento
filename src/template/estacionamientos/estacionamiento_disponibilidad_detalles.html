@@ -27,8 +27,8 @@
                                 {% for disponibilidad in disponibilidades %}
                                     <tr>
                                         <td>{{ disponibilidad.estacionamiento }}</td>
-                                        <td>${{ disponibilidad.precio_bloque }}</td>
                                         <td>{{ disponibilidad.fecha_disponibilidad }}</td>
+                                        <td>${{ disponibilidad.precio_bloque }}</td>
                                         <td>
                                             <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/{{disponibilidad.id}}/bloque/listar/" role="button">Bloques</a>
                                             <a class="btn btn-primary" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad/editar/{{disponibilidad.id}}" role="button">Editar</a>

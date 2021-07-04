@@ -58,7 +58,7 @@ class Bloque(models.Model):
     descripcion = models.CharField(max_length=50, blank=False, null=True)
 
     def __str__(self):
-        return self.descripcion
+        return str(self.descripcion)
 
 class BloqueDisponibilidad(models.Model):
     disponibilidad = models.ForeignKey(Disponibilidad, on_delete=models.CASCADE, null=True, blank=True, related_name ="bloque_disponibilidad")
@@ -66,7 +66,7 @@ class BloqueDisponibilidad(models.Model):
     bloque_termino = models.ForeignKey(Bloque, on_delete=models.CASCADE, null=True, blank=True, related_name="bloque_termino_disponibilidad")
     
     def __str__(self):
-        return self.disponibilidad
+        return str(self.disponibilidad)
 
 class TipoReserva(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
