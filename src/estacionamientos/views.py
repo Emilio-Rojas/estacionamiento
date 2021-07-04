@@ -14,6 +14,14 @@ def disponibilidad_estacionamiento_detalle(request, id_estacionamiento):
     disponibilidades = Disponibilidad.objects.filter(estacionamiento=id_estacionamiento)
     return render(request, 'estacionamientos/disponibilidad_estacionamiento_detalles.html', {'estacionamiento': estacionamiento, 'disponibilidades': disponibilidades})
 
+def diponibilidad_bloque_listar(request, id_estacionamiento, id_disponibilidad):
+    estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
+    disponibilidad = Disponibilidad.objects.filter(id=id_disponibilidad)
+    id_disponibilidad = id_disponibilidad
+    bloques = BloqueDisponibilidad.objects.filter(disponibilidad=id_disponibilidad)
+    return render(request, 'estacionamientos/bloques/disponibilidad_estacionamiento_bloques.html', {'estacionamiento': estacionamiento, 'disponibilidad':disponibilidad, 'id_disponibilidad':id_disponibilidad,'bloques': bloques})
+
+
 def mapa_estacionamiento(request, id_estacionamiento):
     estacionamiento = Estacionamiento.objects.get(id=id_estacionamiento)
     direccion = estacionamiento.calle + "+" + estacionamiento.numeracion
