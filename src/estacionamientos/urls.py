@@ -7,7 +7,9 @@ from .views import *
 
 
 urlpatterns = [
+  #Disponilidad
   path('disponibilidad/', disponibilidad_estacionamiento, name='disponibilidad-estacionamiento'),
+  path('<int:id_estacionamiento>/disponibilidad_detalle/', disponibilidad_estacionamiento_detalle, name='disponibilidad_estacionamiento_detalle'),
  
   #Estacionamiento particulares
   path('particular/', include([
