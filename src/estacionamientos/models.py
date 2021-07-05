@@ -99,6 +99,9 @@ class Reserva(models.Model):
     bloque_termino = models.IntegerField(null=True, blank=True)
     estado_reserva = models.BooleanField(default=False)
 
+    def __str__(self):
+        return str(self.patente)
+
 class Boleta(models.Model):
     numero_boleta = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="conductor")
