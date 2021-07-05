@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Disponibilidad{% endblock %}
+{% block title %}Detalles Estacionamiento{% endblock %}
 {% block navbar %} {% include 'base/navbar.html' %} {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">DIRECCIÓN</th>
-                                <th scope="col">PRECIO</th>
+                                <th scope="col">PRECIO BASE</th>
                                 <th scope="col">FECHA</th>
                                 <th scope="col">BLOQUES</th>
                             </tr>
@@ -27,7 +27,7 @@
                                 {% for disponibilidad in disponibilidades %}
                                     <tr>
                                         <td>{{ estacionamiento.calle }} {{ estacionamiento.numeracion }}</td>
-                                        <td>${{ disponibilidad.precio_bloque }}</td>
+                                        <td>${{ estacionamiento.precio_base }}</td>
                                         <td>{{ disponibilidad.fecha_disponibilidad }}</td>
                                         <td>
                                         <a class="btn btn-warning" href="/estacionamiento/{{ estacionamiento.id }}/disponibilidad_detalle/{{disponibilidad.id}}/bloque/listar/" role="button">Bloques</a>
