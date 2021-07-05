@@ -15,9 +15,11 @@
                 <form method="POST" class="formulario" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <!-- Se necesita para tomar el valor de los selectores que estans desactivados y llevarlos a la base de datos,
+                        de lo contrario quedan esos campos sin valores
+                    -->
                     <input class="form-control" id="id_tipo_estacionamiento" type="text" name="tipo_estacionamiento" value="1" hidden>
                     <input class="form-control" id="id_comuna_estacionamiento" type="text" name="comuna_estacionamiento" value="3" hidden>
-                    <input class="form-control" id="id_estado_estacionamiento" type="text" name="estado_estacionamiento" value="1" hidden>
                     <div>
                         <a class="btn btn-secondary" href="/estacionamiento/particular/listar/">Volver</a>
                         <button class="btn btn-success" type="submit">Agregar</button>
@@ -30,12 +32,30 @@
 {% endblock%}
 {% block scripts %}
 <script>
+    // desactivar otros tipos de estacionamientos y mostrarl la opcion uno
     document.getElementById("id_tipo_estacionamiento").value = "1";
-    $('#id_tipo_estacionamiento').attr("disabled", true); 
+    document.getElementById("id_tipo_estacionamiento").setAttribute("disabled", true);
+
+    // desactivar otras comunas por requerimientos de la aplicacion (Solo Santiago)
     document.getElementById("id_comuna_estacionamiento").value = "3"; 
     document.getElementById("id_comuna_estacionamiento").setAttribute("disabled", true);
-    document.getElementById("id_estado_estacionamiento").value = "1"; 
-    document.getElementById("id_estado_estacionamiento").setAttribute("disabled", true);
+
+    // filtrar estados de estacionamientos
+    var op_estado = document.getElementById("id_estado_estacionamiento").getElementsByTagName("option");
+    for (var i = 0; i < op_estado.length; i++) {
+        if (op_estado[i].value.toLowerCase() != "1") {
+            op_estado[i].disabled = true;
+        }
+    }
+    document.getElementById("id_estado_estacionamiento").value = "1";
+
+    // filtrar categorias
+    var op_categorias = document.getElementById("id_categoria_estacionamiento").getElementsByTagName("option");
+    for (var i = 0; i < op_categorias.length; i++) {
+        if (op_categorias[i].value.toLowerCase() == "2" || op_categorias[i].value.toLowerCase() == "4" || op_categorias[i].value.toLowerCase() == "5"    ) {
+            op_categorias[i].disabled = true;
+        }
+    }
 </script>
 {% endblock %}
 {% block footer %} {% include 'base/footer.html' %} {% endblock %}

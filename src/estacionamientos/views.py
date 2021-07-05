@@ -89,8 +89,39 @@ def estacionamiento_disponibilidad_agregar(request, id_estacionamiento):
     id_estacionamiento = id_estacionamiento
     if request.method == 'POST':
         form = AgregarDisponibilidadForms(request.POST)
-        if form.is_valid():
-            form.save()
+        request_json = json.loads(json.dumps(request.POST))
+
+        # String de la fecha
+        if (int(request_json['fecha_disponibilidad_day']) < 10):
+            fecha_dia = '0' + request_json['fecha_disponibilidad_day']
+        else:
+            fecha_dia = request_json['fecha_disponibilidad_day']
+
+        if (int(request_json['fecha_disponibilidad_month']) < 10):
+            fecha_mes = '0' + request_json['fecha_disponibilidad_month']
+        else:
+            fecha_mes = request_json['fecha_disponibilidad_month']
+
+        fecha_ingresada = request_json['fecha_disponibilidad_year'] + '-' + fecha_mes + '-' + fecha_dia
+
+        disponibilidad = Disponibilidad.objects.filter(estacionamiento=request_json['estacionamiento'])
+        flag_disponibilidad = False
+        for i in disponibilidad:
+            if (i == fecha_ingresada):
+                flag_disponibilidad = True
+
+    
+        if (disponibilidad):
+            if flag_disponibilidad:
+                print("La fecha ya fue ingresada!!!")
+            else:
+                if form.is_valid():
+                    form.save()
+
+        else:
+            if form.is_valid():
+                form.save()
+
         return redirect('/estacionamiento/' + str(id_estacionamiento) + '/disponibilidad/')
     else:
         form = AgregarDisponibilidadForms()
